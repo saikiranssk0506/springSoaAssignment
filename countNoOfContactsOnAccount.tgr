@@ -1,0 +1,15 @@
+trigger countNoOfContactsOnAccount on Contact (after insert, after update, after delete, after undelete) {
+
+    if(trigger.isAfter && trigger.isInsert){
+        countContactHandler.insertHandlerMethod(trigger.new);
+    }
+    if(trigger.isAfter && trigger.isUpdate){
+       countContactHandler.updateHandlerMethod(trigger.new,trigger.oldmap);
+    }
+    if(trigger.isafter && trigger.isDelete){
+        countContactHandler.deleteHandlerMethod(trigger.old);
+        
+    }if(trigger.isafter && trigger.isundelete){
+        countContactHandler.undeleteHandlerMethod(trigger.new);
+    }
+}
